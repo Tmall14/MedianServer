@@ -6,6 +6,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 public class Converter {
+    // recieves the image and the kernel that has been decided from client.
     public static BufferedImage convert(BufferedImage image, int kernelChoice) {
         int kernel = (kernelChoice-1)/2;
         int kernelSum = (kernelChoice*kernelChoice);

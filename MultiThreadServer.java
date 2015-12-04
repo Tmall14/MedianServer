@@ -15,8 +15,10 @@ public class MultiThreadServer  {
     ServerSocket ss;
     public MultiThreadServer() {
         try {
+            // makes the portnumber 1234
             ServerSocket ss = new ServerSocket(1234);
             System.out.println("Listening");
+            //keeps listening for a client, when it hears a onnection it makes a new client
             while (true) {
                 Socket s;
 
@@ -30,10 +32,12 @@ public class MultiThreadServer  {
     }
 
     public static void main(String args[]) throws Exception {
+        // initiates the server
         new MultiThreadServer();
     }
 
     public class Client extends Thread implements Runnable {
+        // the connection is started.
         Socket s;
 
         public Client(Socket s) {
@@ -64,12 +68,7 @@ public class MultiThreadServer  {
                 int sizerecv = 0;
                 int sizerecv2 = 0;
 
-                /*while(sizerecv != size){
-                    sizerecv = sizerecv + in.read(imageAr);
-                    System.out.println(sizerecv);
-                    System.out.println(size);
-                    loop++;
-                }*/
+
                 byte[] imageAr2 = new byte[size];
                 int placement = 0;
                 while(sizerecv < size){
@@ -80,30 +79,13 @@ public class MultiThreadServer  {
 
                     }
                     placement = placement + sizerecv2;
-                //    System.out.println(imageAr[1]);
-                //    System.out.println(imageAr2[1]);
+
                     sizerecv = sizerecv + sizerecv2;
                 }
-                /*int loop = 0;
-                int infoArray[] = new int[30];
-                for(int sizerecv = in.read(imageAr); sizerecv != size; sizerecv = sizerecv + in.read(imageAr)){
-                    loop++;
-                    infoArray[loop] = sizerecv;
-                    System.out.println(sizerecv);
-                }
-                System.out.println(infoArray[3]);
-
-                System.out.println(loop);
-                for(int i = 0; i < loop; i++){
-                    in.read(imageAr);
-                }*/
-
-                System.out.println("CONTINUE!");
 
                 System.out.println("Read image data, converting to image.");
 
                 //Converting bytes to the image
-
                 BufferedImage bi = null;
                 try {
                     bi = ImageIO.read(new ByteArrayInputStream(imageAr2));
@@ -118,9 +100,8 @@ public class MultiThreadServer  {
 
                 System.out.println("Done, sending image back to client.");
 
-                //Sending converted image back to client
-
                 //Creating byte array that represent the converted image
+                // and prepares for sending converted image back to client
                 ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
                 ImageIO.write(converted, "jpg", byteOut);
 

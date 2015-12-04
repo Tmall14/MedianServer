@@ -16,21 +16,27 @@ public class EchoClient {
 
 
     public static void main(String[] args) throws IOException {
+        // initiates the GUI version
         ActorGUIVersion.main();
     }
 
     public EchoClient(int kernelChoice) {
+        // describes the client and what port it is supposed to connect to.
         this.hostName = "localhost";
         this.portNumber = 1234;
         try {
+            //makes a connection
             client(new Socket(hostName, portNumber), kernelChoice);
         }
+
         catch (IOException e) {
             System.err.println(e.getMessage());
         }
     }
 
     public void client(Socket s, int kernelChoice) {
+
+        //makes sure that it can send and receive data.
         OutputStream out;
         InputStream in = null;
         try {
@@ -38,16 +44,14 @@ public class EchoClient {
             out = s.getOutputStream();
             in = s.getInputStream();
             System.out.println("Got image IO connection to server..");
-
             System.out.println(kernelChoice);
-            //Getting image:
-
+            //Getting image location:
             JFileChooser jfc = new JFileChooser();
             jfc.setDialogTitle("Select image file..");
             int action = jfc.showOpenDialog(null);
             if (action != JFileChooser.APPROVE_OPTION)
                 System.exit(0); // canceled by user
-
+            // uploads the image
             File f = jfc.getSelectedFile();
 
             //Feedback
@@ -60,12 +64,11 @@ public class EchoClient {
             ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
             ImageIO.write(bi, "jpg", byteOut);
 
+            //creates packages that represent image and the kernel choice
             byte[] size = ByteBuffer.allocate(4).putInt(byteOut.size()).array();
             byte[] kernel = ByteBuffer.allocate(4).putInt(kernelChoice).array();
-            System.out.println(byteOut.size());
             System.out.println("Sending image to server.");
-            //Sends the image
-            System.out.println(size);
+            //Sends the image and kernel
             out.write(size);
             out.write(kernel);
             out.write(byteOut.toByteArray());
@@ -75,12 +78,12 @@ public class EchoClient {
             //Reading the bytes from server
             byte[] sizeAr = new byte[4];
             in.read(sizeAr);
+            // turning the byte into an int
             int cSize = ByteBuffer.wrap(sizeAr).asIntBuffer().get();
-
+            //defines the size of the image that was returned.
             byte[]imageAr = new byte[cSize];
             int sizerecv = 0;
             int sizerecv2 = 0;
-
             byte[] imageAr2 = new byte[cSize];
             int placement = 0;
             while(sizerecv < cSize){
@@ -91,14 +94,8 @@ public class EchoClient {
 
                 }
                 placement = placement + sizerecv2;
-                System.out.println(imageAr[1]);
-                System.out.println(imageAr2[1]);
                 sizerecv = sizerecv + sizerecv2;
             }
-            //in.read(imageAr);
-            //int sizerecv = 0;
-            //while(sizerecv == in.read(imageAr));
-            //in.read(imageAr);
             System.out.println("Got converted image data from server, starting conversion to image.");
 
             //Converting bytes to the image
