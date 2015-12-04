@@ -61,17 +61,17 @@ public class ActorGUIVersion extends JFrame implements ActionListener {
     }
 
 
-    // what the different button does.
+    // what the different button does when they are activated
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == k3){
-            kernel = 3;
+            kernel = 3; // makes kernel 3x3
         } else if(e.getSource() == k5){
-            kernel = 5;
+            kernel = 5;// makes kernel 5x5
         } else if(e.getSource() == k7){
-            kernel = 7;
+            kernel = 7; // makes kernel 7x7
         } else if(e.getSource() == k9){
-            kernel = 9;
+            kernel = 9;// makes kernel 9x9
         }
         // changes the button so it remains the same size.
         menu1.setText("         " + kernel + "x" + kernel + "         ");
