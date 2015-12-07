@@ -6,10 +6,10 @@ import java.awt.image.BufferedImage;
 ///////Made by MED3-6////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 public class Converter {
-
+    
     // receives the image and the kernel that has been decided from client.
     public static BufferedImage convert(BufferedImage image, int kernelChoice) {
-
+        
         //pixels in kernel to one side of the handled pixel
         int kernel = (kernelChoice-1)/2;
 
