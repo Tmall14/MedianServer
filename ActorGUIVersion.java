@@ -75,6 +75,8 @@ public class ActorGUIVersion extends JFrame implements ActionListener {
             kernel = 7; // makes kernel 7x7
         } else if(e.getSource() == k9){
             kernel = 9;// makes kernel 9x9
+        } else {
+            kernel = 3;
         }
         // changes the button so it remains the same size.
         menu1.setText("         " + kernel + "x" + kernel + "         ");
