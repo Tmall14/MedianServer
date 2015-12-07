@@ -25,7 +25,7 @@ public class EchoClient {
         this.hostName = "localhost";
         this.portNumber = 1234;
         try {
-            //makes a connection
+            //makes a connection available
             client(new Socket(hostName, portNumber), kernelChoice);
         }
 
@@ -44,8 +44,9 @@ public class EchoClient {
             out = s.getOutputStream();
             in = s.getInputStream();
             System.out.println("Got image IO connection to server..");
+            // prints the number you've selected
             System.out.println(kernelChoice);
-            //Getting image location:
+            //Getting image location
             JFileChooser jfc = new JFileChooser();
             jfc.setDialogTitle("Select image file..");
             int action = jfc.showOpenDialog(null);

@@ -18,7 +18,7 @@ public class MultiThreadServer  {
             // makes the portnumber 1234
             ServerSocket ss = new ServerSocket(1234);
             System.out.println("Listening");
-            //keeps listening for a client, when it hears a onnection it makes a new client
+            //keeps listening for a client, when it hears a connection it makes a new client
             while (true) {
                 Socket s;
 
@@ -39,7 +39,7 @@ public class MultiThreadServer  {
     public class Client extends Thread implements Runnable {
         // the connection is started.
         Socket s;
-
+// makes sure the client is independent and it can initiate a new client if needed.
         public Client(Socket s) {
             this.s = s;
             this.start();
@@ -48,6 +48,7 @@ public class MultiThreadServer  {
         @Override
         public void run() {
             try {
+                // makes the communication so it can receive and transmit data.
                 OutputStream out = s.getOutputStream();
                 InputStream in = s.getInputStream();
                 System.out.println("Got image IO connections to client");
