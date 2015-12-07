@@ -80,10 +80,11 @@ public class EchoClient {
             in.read(sizeAr);
             // turning the byte into an int
             int cSize = ByteBuffer.wrap(sizeAr).asIntBuffer().get();
-            //defines the size of the image that was returned.
+            //defines the size of the image that was returned
             byte[]imageAr = new byte[cSize];
             int sizerecv = 0;
             int sizerecv2 = 0;
+            // loads the image data
             byte[] imageAr2 = new byte[cSize];
             int placement = 0;
             while(sizerecv < cSize){
@@ -116,6 +117,7 @@ public class EchoClient {
         }
         finally {
             try {
+                // shuts down the program
                 in.close();
             }
             catch (IOException e) {
