@@ -4,12 +4,15 @@ package Com.Company;
 /**
  * Created by TM on 27-09-2015.
  */
-
+// the different packages needed for the gui to work
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ActorGUIVersion extends JFrame implements ActionListener {
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////The gui where you select the kernel and the upload image /////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     int kernel;
 
     // defining the different kernels.
@@ -32,7 +35,7 @@ public class ActorGUIVersion extends JFrame implements ActionListener {
         messageField.setEditable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         container.add(messageField);
-        //option for the drop down menu.
+        //options for the drop down menu.
         menubar.add(menu1);
         menu1.add(k3);
         menu1.add(k5);
