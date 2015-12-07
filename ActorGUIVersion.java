@@ -2,7 +2,7 @@ package Com.Company;
 
 
 /**
- * Created by TM on 27-09-2015.
+ * Created by med3-6 on 27-09-2015.
  */
 // the different packages needed for the gui to work
 import javax.swing.*;

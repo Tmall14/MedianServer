@@ -1,7 +1,7 @@
 package Com.Company;
 
 /**
- * Created by Thomas on 18-11-2015.
+ * Created by MED3-6 on 18-11-2015.
  */
 
 import javax.imageio.ImageIO;
